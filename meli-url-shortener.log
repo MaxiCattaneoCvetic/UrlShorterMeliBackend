@@ -5273,3 +5273,11 @@ java.lang.StringIndexOutOfBoundsException: Range [-3, 3) out of bounds for lengt
 	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
 
 2024-06-27T14:54:50.048-03:00  WARN 20416 --- [MeliUrlShorter] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.context.request.async.AsyncRequestNotUsableException: ServletOutputStream failed to flush: java.io.IOException: An established connection was aborted by the software in your host machine]
+2024-06-27T21:41:34.161-03:00  INFO 9540 --- [MeliUrlShorter] [main] c.e.M.MeliUrlShorterApplicationTests     : Starting MeliUrlShorterApplicationTests using Java 21.0.2 with PID 9540 (started by cveti in C:\Users\cveti\Desktop\MeliUrlShorter)
+2024-06-27T21:41:34.163-03:00  INFO 9540 --- [MeliUrlShorter] [main] c.e.M.MeliUrlShorterApplicationTests     : No active profile set, falling back to 1 default profile: "default"
+2024-06-27T21:41:35.283-03:00  INFO 9540 --- [MeliUrlShorter] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-27T21:41:35.286-03:00  INFO 9540 --- [MeliUrlShorter] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-27T21:41:35.318-03:00  INFO 9540 --- [MeliUrlShorter] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2024-06-27T21:41:36.609-03:00  WARN 9540 --- [MeliUrlShorter] [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-06-27T21:41:37.362-03:00  INFO 9540 --- [MeliUrlShorter] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoints beneath base path '/actuator'
+2024-06-27T21:41:37.504-03:00  INFO 9540 --- [MeliUrlShorter] [main] c.e.M.MeliUrlShorterApplicationTests     : Started MeliUrlShorterApplicationTests in 3.582 seconds (process running for 4.38)
