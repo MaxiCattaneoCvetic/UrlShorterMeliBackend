@@ -1,4 +1,4 @@
-package com.example.MeliUrlShorter.dbConfig;
+package com.example.MeliUrlShorter.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;
