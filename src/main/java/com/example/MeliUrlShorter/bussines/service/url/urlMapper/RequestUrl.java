@@ -10,14 +10,27 @@ public class RequestUrl implements IUrlMapper<com.example.MeliUrlShorter.present
 
     @Override
     public Url toUrl(com.example.MeliUrlShorter.presentation.controller.req.RequestUrl toBeMapped) {
+        String protocol = toBeMapped.protocol();
+        String port = toBeMapped.port();
+        // Si el protocolo contiene :// esta ok lo dejamos asi, pero sino le agregamos http://
+        protocol = protocol.contains("://") ? protocol : "http://" ;
+        protocol = protocol.startsWith("www.") ? protocol.replace("www.", "http://") : protocol;
+        port = (!port.startsWith(":") && !port.isEmpty()) ? ":" + port : port;
+
+        // El navegador por defecto redirecciona a https, por lo tanto si la web que estamos consultando tiene certificado lo redireccionara a https
+        // Caso contrario si el navegador no tiene certificado e intentamos ingresar con https nos arrojara un error
+        // En conclusión, nos conviene mappear la solicitud a http
+
         return new Url(
-                toBeMapped.protocol(),
+                protocol,
                 toBeMapped.domain(),
                 toBeMapped.tld(),
-                toBeMapped.port(),
+                port,
                 toBeMapped.route()
         );
+
     }
+
 
 
 }

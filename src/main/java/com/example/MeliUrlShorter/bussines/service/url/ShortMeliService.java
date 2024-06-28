@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.math.BigInteger;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -36,8 +37,10 @@ public class ShortMeliService implements IShortMeli {
 
     @Override
     public String saveUrl(RequestUrl urlRequestToShort) {
+
         //Mapeamos la request a un objeto URL para nuestro sistema.
         String urlToSave = urlMapperUpdate.toUrl(urlRequestToShort).toString();
+
 
         // Generamos el hash
         var hash = shortUrl(urlToSave, 6);
