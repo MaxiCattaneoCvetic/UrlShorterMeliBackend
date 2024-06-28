@@ -8,7 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -30,7 +33,9 @@ public class ShortMeliController {
     // Este endpoint sirve para actualizar los campos de la ulr
     @PutMapping()
     public String updateUrlAttribute(@RequestBody RequestUrl urlToUpdate,
-                                     @RequestParam String shortUrl) {
+                                     @RequestParam String shortUrl) throws Exception {
+        System.out.println("urlToUpdat" + urlToUpdate);
+        System.out.println("request" + shortUrl);
         return shortMeliService.updateUrlAttribute(urlToUpdate, shortUrl);
     }
 
@@ -50,9 +55,13 @@ public class ShortMeliController {
     @PutMapping("/disable")
     public void disableUrl(@RequestParam String urlToDisable) {
         shortMeliService.disableShortUrl(urlToDisable);
-
-
     }
+
+    @GetMapping("/check")
+    public Map<String,String> checkUrl(@RequestParam String urlToCheck) throws Exception {
+       return shortMeliService.checkUrl(urlToCheck);
+    }
+
 
 
 

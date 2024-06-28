@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.math.BigInteger;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class ShortMeliService implements IShortMeli {
@@ -67,27 +70,87 @@ public class ShortMeliService implements IShortMeli {
     //*********************** Update Url ************************************
 
     @Override
-    public String updateUrlAttribute(RequestUrl urlToUpdate, String shortUrl) {
+    public String updateUrlAttribute(RequestUrl urlToUpdate, String shortUrl) throws Exception {
+
         //recibo la url corta y le saco el hash
-        String hash = shortUrl.substring(shortUrl.length() - 6).trim();
+        String hash = getHash(shortUrl);
 
-        //Mapeamos la request a un objeto URL para nuestro sistema.
-        var urlMapped = urlMapperUpdate.toUrl(urlToUpdate).toString();
+        //Buscamos la URL por el hash
+        String urlSaved = meliUrlPersistance.getUrlResolve(hash);
 
-        //Enviamos a actualizar la url
-        meliUrlPersistance.updateUrl(hash, urlMapped);
+        //Si no hay una URL com ese hash lanzamos excepcion
+        if (urlSaved == null) {
+            throw new Exception("Url not found");
+        }
 
-        //Retornamos la url actualizada que sera la misma ya que el hash no cambia
+        //Mappeamos la requet a una url
+        Url urlUpdateMapped = urlMapperUpdate.toUrl(urlToUpdate);
+
+
+        //Actualizamos la url
+        meliUrlPersistance.updateUrl(hash, urlUpdateMapped.toString());
+
+        //Devolvemos la url accesible, que sera la misma ya que el hash no cambia
         return urlToShort + hash;
+
+
     }
+
+
+    Url urlDesestructured (String urlToDestructured) throws MalformedURLException {
+        //Una vez aca comenzamos con la desestructuracion
+        URL url = new URL(urlToDestructured);
+        String tld = url.getHost().substring(url.getHost().indexOf(".") + 1);
+        String domain = url.getHost().substring(0, url.getHost().indexOf("."));
+
+        Url urlDesestructured = new Url(
+                url.getProtocol(),
+                domain,
+                tld,
+                url.getPort() == -1 ? "" : url.getPort() + "",
+                url.getPath() // en nuestro objeto se llama route
+        );
+
+
+
+        return urlDesestructured;
+    }
+
+
+
 
     @Override
     public void disableShortUrl(String urlToDisable) {
-        //recibo la url a desabilitar y le saco el hash
-        String hash = urlToDisable.substring(urlToDisable.length() - 6).trim();
+        //recibo la url corta y le saco el hash
+        String hash = getHash(urlToDisable);
 
         //Desabilitamos la url
         meliUrlPersistance.disableUrl(hash);
+
+    }
+
+    @Override
+    public Map<String,String > checkUrl(String urlToCheck) throws Exception {
+        System.out.println(urlToCheck);
+        String hash = getHash(urlToCheck);
+        String urlSaved = meliUrlPersistance.getUrlResolve(hash);
+
+        //Si no hay una URL com ese hash lanzamos excepcion
+        if (urlSaved == null) {
+            throw new Exception("Url not found");
+        }
+        //Desustruramos la URL para en front ya que la recibe por partes, en el caso de no tener front podriamos pasar la url directamente y cambiarla a la que queramos
+        Url url = urlDesestructured(urlSaved);
+
+        //Este Map es mas que nada para que el front pueda diferenciar y alojar cada dato en el input
+        return Map.of(
+                "protocol", url.protocol(),
+                "domain", url.domain(),
+                "tld", url.tld(),
+                "port", url.port(),
+                "route", url.route()
+        );
+
 
     }
 
@@ -97,6 +160,11 @@ public class ShortMeliService implements IShortMeli {
     public String getUrlResolve(String hash) {
         System.out.println(hash);
         return meliUrlPersistance.getUrlResolve(hash);
+    }
+
+
+    String getHash(String urlToGetHash) {
+        return urlToGetHash.substring(urlToGetHash.length() - 6).trim();
     }
 
 
