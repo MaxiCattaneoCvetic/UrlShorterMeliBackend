@@ -5281,3 +5281,11 @@ java.lang.StringIndexOutOfBoundsException: Range [-3, 3) out of bounds for lengt
 2024-06-27T21:41:36.609-03:00  WARN 9540 --- [MeliUrlShorter] [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
 2024-06-27T21:41:37.362-03:00  INFO 9540 --- [MeliUrlShorter] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoints beneath base path '/actuator'
 2024-06-27T21:41:37.504-03:00  INFO 9540 --- [MeliUrlShorter] [main] c.e.M.MeliUrlShorterApplicationTests     : Started MeliUrlShorterApplicationTests in 3.582 seconds (process running for 4.38)
+2024-06-27T21:50:44.616-03:00  INFO 2788 --- [MeliUrlShorter] [main] c.e.M.MeliUrlShorterApplicationTests     : Starting MeliUrlShorterApplicationTests using Java 21.0.2 with PID 2788 (started by cveti in C:\Users\cveti\Desktop\MeliUrlShorter)
+2024-06-27T21:50:44.618-03:00  INFO 2788 --- [MeliUrlShorter] [main] c.e.M.MeliUrlShorterApplicationTests     : No active profile set, falling back to 1 default profile: "default"
+2024-06-27T21:50:45.572-03:00  INFO 2788 --- [MeliUrlShorter] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-27T21:50:45.577-03:00  INFO 2788 --- [MeliUrlShorter] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-27T21:50:45.605-03:00  INFO 2788 --- [MeliUrlShorter] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2024-06-27T21:50:46.793-03:00  WARN 2788 --- [MeliUrlShorter] [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-06-27T21:50:47.589-03:00  INFO 2788 --- [MeliUrlShorter] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2024-06-27T21:50:47.646-03:00  INFO 2788 --- [MeliUrlShorter] [main] c.e.M.MeliUrlShorterApplicationTests     : Started MeliUrlShorterApplicationTests in 3.27 seconds (process running for 4.04)
