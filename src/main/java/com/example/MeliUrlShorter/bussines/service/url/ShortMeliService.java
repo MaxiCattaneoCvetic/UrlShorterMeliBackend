@@ -15,8 +15,6 @@ import java.security.NoSuchAlgorithmException;
 @Service
 public class ShortMeliService implements IShortMeli {
 
-
-
     @Autowired
     final private IUrlMapper<RequestUrl> urlMapperUpdate;
     final private IMeliPersistance meliUrlPersistance;
@@ -27,8 +25,6 @@ public class ShortMeliService implements IShortMeli {
 
     @Value("${meli.url}")
     private String urlToShort;
-
-
 
     public ShortMeliService(IUrlMapper<RequestUrl> urlMapperUpdate, IMeliPersistance meliUrlPersistance) throws NoSuchAlgorithmException {
         this.urlMapperUpdate = urlMapperUpdate;

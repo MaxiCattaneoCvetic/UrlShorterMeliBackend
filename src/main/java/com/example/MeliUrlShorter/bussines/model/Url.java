@@ -1,6 +1,9 @@
 package com.example.MeliUrlShorter.bussines.model;
 
-public class Url {
+
+import java.io.Serializable;
+
+public class Url implements Serializable {
     private String hash;
     private String protocol;
     private String domain;
@@ -24,15 +27,6 @@ public class Url {
         this.port = port;
         this.route = route;
     }
-
-    //    public static void main(String[] args) {
-//        protocol = "https";
-//        domain = "meli";
-//        tld = ".com";
-//        port = "80";
-//        route = "/api/";
-//    }
-
 
     public String hash() {
         return hash;

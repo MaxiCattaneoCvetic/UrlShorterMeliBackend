@@ -1,6 +1,5 @@
 package com.example.MeliUrlShorter.persistance;
 
-import java.util.List;
 
 public interface IMeliPersistance {
 
