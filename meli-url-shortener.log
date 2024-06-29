@@ -4006,3 +4006,21 @@ java.lang.IllegalArgumentException: Invalid character found in method name [PING
 	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
 
 2024-06-29T10:54:20.868-03:00  WARN 2960 --- [MeliUrlShorter] [registrationTask1] d.c.b.a.c.r.ApplicationRegistrator       : Failed to register application as Application(name=MeliUrlShorter, managementUrl=http://DESKTOP-03O4FAC:8080/actuator, healthUrl=http://DESKTOP-03O4FAC:8080/actuator/health, serviceUrl=http://DESKTOP-03O4FAC:8080/) at spring-boot-admin ([http://localhost:8080/instances]): null. Further attempts are logged on DEBUG level
+2024-06-29T10:55:29.798-03:00  INFO 7532 --- [MeliUrlShorter] [main] c.e.M.MeliUrlShorterApplication          : Starting MeliUrlShorterApplication using Java 21.0.2 with PID 7532 (C:\Users\cveti\Desktop\MeliUrlShorter\target\classes started by cveti in C:\Users\cveti\Desktop\MeliUrlShorter)
+2024-06-29T10:55:29.799-03:00  INFO 7532 --- [MeliUrlShorter] [main] c.e.M.MeliUrlShorterApplication          : No active profile set, falling back to 1 default profile: "default"
+2024-06-29T10:55:31.026-03:00  INFO 7532 --- [MeliUrlShorter] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-29T10:55:31.028-03:00  INFO 7532 --- [MeliUrlShorter] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-29T10:55:31.151-03:00  INFO 7532 --- [MeliUrlShorter] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 107 ms. Found 1 Redis repository interface.
+2024-06-29T10:55:31.701-03:00  INFO 7532 --- [MeliUrlShorter] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-29T10:55:31.715-03:00  INFO 7532 --- [MeliUrlShorter] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-29T10:55:31.715-03:00  INFO 7532 --- [MeliUrlShorter] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-29T10:55:31.773-03:00  INFO 7532 --- [MeliUrlShorter] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-29T10:55:31.773-03:00  INFO 7532 --- [MeliUrlShorter] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1924 ms
+2024-06-29T10:55:32.829-03:00  WARN 7532 --- [MeliUrlShorter] [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-06-29T10:55:33.804-03:00  INFO 7532 --- [MeliUrlShorter] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2024-06-29T10:55:33.863-03:00  INFO 7532 --- [MeliUrlShorter] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-06-29T10:55:33.876-03:00  INFO 7532 --- [MeliUrlShorter] [main] c.e.M.MeliUrlShorterApplication          : Started MeliUrlShorterApplication in 4.451 seconds (process running for 4.841)
+2024-06-29T10:55:43.921-03:00  INFO 7532 --- [MeliUrlShorter] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-29T10:55:43.922-03:00  INFO 7532 --- [MeliUrlShorter] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-29T10:55:43.923-03:00  INFO 7532 --- [MeliUrlShorter] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-29T10:55:44.142-03:00  INFO 7532 --- [MeliUrlShorter] [registrationTask1] d.c.b.a.c.r.ApplicationRegistrator       : Application registered itself as 830c018baa23

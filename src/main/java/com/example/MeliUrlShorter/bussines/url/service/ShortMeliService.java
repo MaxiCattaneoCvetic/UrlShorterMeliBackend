@@ -6,6 +6,8 @@ import com.example.MeliUrlShorter.bussines.url.service.mapper.IUrlMapper;
 import com.example.MeliUrlShorter.bussines.url.service.urlServiceInterface.IShortMeli;
 import com.example.MeliUrlShorter.persistance.IMeliPersistance;
 import com.example.MeliUrlShorter.presentation.controller.req.RequestUrl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import java.util.Map;
 @Service
 public class ShortMeliService implements IShortMeli {
 
+    private static final Logger log = LoggerFactory.getLogger(ShortMeliService.class);
     @Autowired
     final private IUrlMapper<RequestUrl> urlMapperUpdate;
     final private IMeliPersistance meliUrlPersistance;
@@ -47,12 +50,13 @@ public class ShortMeliService implements IShortMeli {
 
         // Generamos el hash
         var hash = generateHash(urlToSave.toString(), 6);
-        System.out.println(hash + " " + urlToSave.toString());
+
+        //Le seteamos el hash, para nostros el HASH es el ID
         urlToSave.setHash(hash);
+
         //salvamos la url
         meliUrlPersistance.save(urlToSave);
-        System.out.println(urlRequestToShort + " " + hash);
-
+        log.info("(saveUrl) -> Url saved: {}", urlToSave);
         //Devolvemos la url accesible
         return urlToShort + hash;
     }
@@ -60,6 +64,7 @@ public class ShortMeliService implements IShortMeli {
 
     @Override // Este metodo genera el hash mediante el algoritmo SHA-256
     public String generateHash(String url, int length) {
+        log.info("(generateHash) -> Generando Hash para la url: {}", url);
         var bytes = encripter.digest(url.getBytes());
         var hash = String.format("%32x", new BigInteger(1, bytes));
         return hash.substring(0, length);
@@ -76,6 +81,7 @@ public class ShortMeliService implements IShortMeli {
         String hash = getHashFromUrl(shortUrl);
 
         //Buscamos la URL por el hash
+        log.info("(updateUrlAttribute) -> Comenzando la verificacion de existencia de la URL");
         meliUrlPersistance.findById(hash).orElseThrow(() -> new UrlNotFoundException("Url not found"));
 
 
@@ -86,7 +92,7 @@ public class ShortMeliService implements IShortMeli {
 
         //Actualizamos la url
         meliUrlPersistance.save(urlUpdateMapped);
-
+        log.info("(updateUrlAttribute) -> Se actualizo la url: {}", urlUpdateMapped);
         //Devolvemos la url accesible, que sera la misma ya que el hash no cambia
         return urlToShort + hash;
 
@@ -96,40 +102,30 @@ public class ShortMeliService implements IShortMeli {
 
     @Override
     public Url urlDesestructured(String urlToDestructured) throws MalformedURLException {
+        log.info("(urlDesestructured) -> Desestructurando la url: {}", urlToDestructured);
         //Una vez aca comenzamos con la desestructuracion
         URL url = new URL(urlToDestructured);
-        String tld = url.getHost().substring(url.getHost().indexOf(".") + 1);
-        String domain = url.getHost().substring(0, url.getHost().indexOf("."));
+
+        //No hay una manera de sacar el .com .ar etc, obtenemos el host y vamos hasta la posicion del . y ahi si obtenemos el tld
+        int indexOfDot = url.getHost().indexOf(".");
+        String tld = url.getHost().substring(indexOfDot + 1);
+        String domain = url.getHost().substring(0, indexOfDot);
 
         Url urlDesestructured = new Url(
                 url.getProtocol(),
                 domain,
                 tld,
-                url.getPort() == -1 ? "" : url.getPort() + "",
+                url.getPort() == -1 ? "" : url.getPort() + "", // Aca lo que pasa es que si existe el puerto nos devuelve el puerto, de lo contrario nos devuelve -1
                 url.getPath() // en nuestro objeto se llama route
         );
         return urlDesestructured;
     }
 
-    @Override
-    public void enableShortUrl(String urlToEnable) {
-//        String hash = getHashFromUrl(urlToEnable);
-//        String URL = meliUrlPersistance.getUrlResolve(hash);
-//        if(URL.contains(":DISABLED")){
-//            urlToEnable = URL.replace(":DISABLED","");
-//        }
-//        meliUrlPersistance.enableUrl(hash, urlToEnable);
-    }
 
-
-    @Override
-    public void disableShortUrl(String urlToDisable) {
-
-
-    }
 
     @Override
     public Map<String,String > checkUrl(String urlToCheck) throws Exception {
+        log.info("(checkUrl) -> Chequeando la existencia de la URL");
         String hash = getHashFromUrl(urlToCheck);
         Url urlSaved = meliUrlPersistance.findById(hash).orElseThrow(() -> new UrlNotFoundException("Url not found"));
 
@@ -157,19 +153,38 @@ public class ShortMeliService implements IShortMeli {
 
     @Override
     public Url getUrlResolve(String hash) throws Exception {
-        System.out.println(hash);
+        log.info("(getUrlResolve) -> Obteniendo la URL");
         return meliUrlPersistance.findById(hash).orElseThrow(() -> new UrlNotFoundException("Url not found"));
     }
 
 
     String getHashFromUrl(String urlToGetHash) {
+        log.info("(getHashFromUrl) -> Obteniendo el hash de la URL");
+        //Nuestro hash lo formamos mediante 6 numeros, estos simpre se encontraran al final de la URL corta, por lo tanto realice un metodo para sacarlos facilmente.
         return urlToGetHash.substring(urlToGetHash.length() - 6).trim();
     }
 
 
-    //*********************** Delete Url ************************************
+    //*********************** ADMINISTRATOR URL ************************************
+
+    @Override
+    public void enableShortUrl(String urlToEnable) {
+        log.info("(enableShortUrl) -> Habilitando la URL");
+//        String hash = getHashFromUrl(urlToEnable);
+//        String URL = meliUrlPersistance.getUrlResolve(hash);
+//        if(URL.contains(":DISABLED")){
+//            urlToEnable = URL.replace(":DISABLED","");
+//        }
+//        meliUrlPersistance.enableUrl(hash, urlToEnable);
+    }
 
 
+    @Override
+    public void disableShortUrl(String urlToDisable) {
+        log.info("(disableShortUrl) -> Desabilitando la URL");
+
+
+    }
 
 
 }
