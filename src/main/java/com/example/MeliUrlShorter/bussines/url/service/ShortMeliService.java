@@ -1,6 +1,8 @@
 package com.example.MeliUrlShorter.bussines.url.service;
 
-import com.example.MeliUrlShorter.bussines.url.exception.UrlNotFoundException;
+import com.example.MeliUrlShorter.bussines.url.exception.URLBadRequestException;
+import com.example.MeliUrlShorter.bussines.url.exception.URLNotFoundException;
+import com.example.MeliUrlShorter.bussines.url.exceptionTypes.BadRequestException;
 import com.example.MeliUrlShorter.bussines.url.model.Url;
 import com.example.MeliUrlShorter.bussines.url.service.mapper.IUrlMapper;
 import com.example.MeliUrlShorter.bussines.url.service.urlServiceInterface.IShortMeli;
@@ -82,7 +84,7 @@ public class ShortMeliService implements IShortMeli {
 
         //Buscamos la URL por el hash
         log.info("(updateUrlAttribute) -> Comenzando la verificacion de existencia de la URL");
-        meliUrlPersistance.findById(hash).orElseThrow(() -> new UrlNotFoundException("Url not found"));
+        meliUrlPersistance.findById(hash).orElseThrow(() -> new URLNotFoundException("Url not found"));
 
 
         //Mappeamos la requet a una url
@@ -100,26 +102,7 @@ public class ShortMeliService implements IShortMeli {
     }
 
 
-    @Override
-    public Url urlDesestructured(String urlToDestructured) throws MalformedURLException {
-        log.info("(urlDesestructured) -> Desestructurando la url: {}", urlToDestructured);
-        //Una vez aca comenzamos con la desestructuracion
-        URL url = new URL(urlToDestructured);
 
-        //No hay una manera de sacar el .com .ar etc, obtenemos el host y vamos hasta la posicion del . y ahi si obtenemos el tld
-        int indexOfDot = url.getHost().indexOf(".");
-        String tld = url.getHost().substring(indexOfDot + 1);
-        String domain = url.getHost().substring(0, indexOfDot);
-
-        Url urlDesestructured = new Url(
-                url.getProtocol(),
-                domain,
-                tld,
-                url.getPort() == -1 ? "" : url.getPort() + "", // Aca lo que pasa es que si existe el puerto nos devuelve el puerto, de lo contrario nos devuelve -1
-                url.getPath() // en nuestro objeto se llama route
-        );
-        return urlDesestructured;
-    }
 
 
 
@@ -127,7 +110,7 @@ public class ShortMeliService implements IShortMeli {
     public Map<String,String > checkUrl(String urlToCheck) throws Exception {
         log.info("(checkUrl) -> Chequeando la existencia de la URL");
         String hash = getHashFromUrl(urlToCheck);
-        Url urlSaved = meliUrlPersistance.findById(hash).orElseThrow(() -> new UrlNotFoundException("Url not found"));
+        Url urlSaved = meliUrlPersistance.findById(hash).orElseThrow(() -> new URLNotFoundException("Url not found"));
 
         //Si no hay una URL com ese hash lanzamos excepcion
         if (urlSaved == null) {
@@ -148,13 +131,18 @@ public class ShortMeliService implements IShortMeli {
 
     }
 
-
-
+    //*********************** GETS ************************************
 
     @Override
     public Url getUrlResolve(String hash) throws Exception {
         log.info("(getUrlResolve) -> Obteniendo la URL");
-        return meliUrlPersistance.findById(hash).orElseThrow(() -> new UrlNotFoundException("Url not found"));
+        Url urlFound = meliUrlPersistance.findById(hash).orElseThrow(() -> new URLNotFoundException("Url not found"));
+        if(urlFound.isActive()){
+            return  urlFound;
+        }else if (!urlFound.isActive()){
+            throw new URLBadRequestException("Url not active, plase enable it");
+        }
+        return null;
     }
 
 
@@ -170,20 +158,47 @@ public class ShortMeliService implements IShortMeli {
     @Override
     public void enableShortUrl(String urlToEnable) {
         log.info("(enableShortUrl) -> Habilitando la URL");
-//        String hash = getHashFromUrl(urlToEnable);
-//        String URL = meliUrlPersistance.getUrlResolve(hash);
-//        if(URL.contains(":DISABLED")){
-//            urlToEnable = URL.replace(":DISABLED","");
-//        }
-//        meliUrlPersistance.enableUrl(hash, urlToEnable);
+        String hash = getHashFromUrl(urlToEnable);
+        Url urlFoundToEnable = meliUrlPersistance.findById(hash).orElseThrow(() -> new URLNotFoundException("Url not found"));
+        urlFoundToEnable.setActive(true);
+        meliUrlPersistance.save(urlFoundToEnable);
     }
+
+
 
 
     @Override
     public void disableShortUrl(String urlToDisable) {
         log.info("(disableShortUrl) -> Desabilitando la URL");
+        String hash = getHashFromUrl(urlToDisable);
+        Url urlFoundToEnable = meliUrlPersistance.findById(hash).orElseThrow(() -> new URLNotFoundException("Url not found"));
+        urlFoundToEnable.setActive(false);
+        meliUrlPersistance.save(urlFoundToEnable);
 
 
+    }
+
+    //*********************** ADDITIONAL METHODS ************************************
+
+    @Override
+    public Url urlDesestructured(String urlToDestructured) throws MalformedURLException {
+        log.info("(urlDesestructured) -> Desestructurando la url: {}", urlToDestructured);
+        //Una vez aca comenzamos con la desestructuracion
+        URL url = new URL(urlToDestructured);
+
+        //No hay una manera de sacar el .com .ar etc, obtenemos el host y vamos hasta la posicion del . y ahi si obtenemos el tld
+        int indexOfDot = url.getHost().indexOf(".");
+        String tld = url.getHost().substring(indexOfDot + 1);
+        String domain = url.getHost().substring(0, indexOfDot);
+
+        Url urlDesestructured = new Url(
+                url.getProtocol(),
+                domain,
+                tld,
+                url.getPort() == -1 ? "" : url.getPort() + "", // Aca lo que pasa es que si existe el puerto nos devuelve el puerto, de lo contrario nos devuelve -1
+                url.getPath() // en nuestro objeto se llama route
+        );
+        return urlDesestructured;
     }
 
 

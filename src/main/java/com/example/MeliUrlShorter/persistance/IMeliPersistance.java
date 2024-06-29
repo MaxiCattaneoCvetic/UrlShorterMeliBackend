@@ -8,17 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IMeliPersistance extends CrudRepository<Url, String> {
 
-//    void saveUrl(String hash, Url urlToSave);
-//
-//    void updateUrl(String hash, Url urlToUpdate);
-//
-//    Url getUrlResolve(String hash);
-//
-//    void disableUrl(String hash,Object objectToDisable);
-//
-//    void enableUrl(String hash, String urlEnable);
-//
-//    Object findObjectByHash(String hash,String key);
 
 }
 

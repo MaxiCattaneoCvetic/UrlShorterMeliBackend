@@ -80,5 +80,11 @@ public class Url implements Serializable {
         return protocol+domain+tld+port+route;
     }
 
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 
+    public Boolean isActive() {
+        return isActive;
+    }
 }
