@@ -1,7 +1,7 @@
-package com.example.MeliUrlShorter.bussines.service.url.urlMapper;
+package com.example.MeliUrlShorter.bussines.url.service.mapper;
 
 
-import com.example.MeliUrlShorter.bussines.model.Url;
+import com.example.MeliUrlShorter.bussines.url.model.Url;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -30,7 +30,8 @@ public class RequestUrl implements IUrlMapper<com.example.MeliUrlShorter.present
                 toBeMapped.domain(),
                 tld,
                 port,
-                route
+                route,
+                true
         );
 
     }
