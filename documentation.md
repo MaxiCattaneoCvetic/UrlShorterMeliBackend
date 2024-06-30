@@ -36,3 +36,11 @@ En este caso tenemos varios metodos que permiten almacenar la URL que viene desd
 
 
 
+
+Actuator: Nos va a generar toda la informacion de nuestra app, cuanto tiempo lleva ON, si se cae, si se cae la DB, nos listas las peticiones etc
+
+Prometheus: Formatea  los datos de actuator para que los pueda entender GRAFANA -> Grafana es la que nos va a brindar los dashboard etc. Es nuestro tablero de admiinstracion
+
+
+
+

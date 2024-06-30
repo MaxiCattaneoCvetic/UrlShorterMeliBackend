@@ -2,7 +2,6 @@ package com.example.MeliUrlShorter.bussines.url.service;
 
 import com.example.MeliUrlShorter.bussines.url.exception.URLBadRequestException;
 import com.example.MeliUrlShorter.bussines.url.exception.URLNotFoundException;
-import com.example.MeliUrlShorter.bussines.url.exceptionTypes.BadRequestException;
 import com.example.MeliUrlShorter.bussines.url.model.Url;
 import com.example.MeliUrlShorter.bussines.url.service.mapper.IUrlMapper;
 import com.example.MeliUrlShorter.bussines.url.service.urlServiceInterface.IShortMeli;

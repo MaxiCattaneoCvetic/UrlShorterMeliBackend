@@ -1,9 +1,7 @@
 package com.example.MeliUrlShorter.bussines.url.exception;
 
 
-import com.example.MeliUrlShorter.bussines.url.exceptionTypes.NotFoundException;
-
-public class URLNotFoundException extends NotFoundException {
+public class URLNotFoundException extends RuntimeException {
 
 
     public URLNotFoundException(String message) {

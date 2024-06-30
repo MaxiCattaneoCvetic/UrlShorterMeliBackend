@@ -1,7 +1,7 @@
 package com.example.MeliUrlShorter.presentation.controller.advisor;
 
-import com.example.MeliUrlShorter.bussines.url.exceptionTypes.BadRequestException;
-import com.example.MeliUrlShorter.bussines.url.exceptionTypes.NotFoundException;
+import com.example.MeliUrlShorter.bussines.url.exception.URLBadRequestException;
+import com.example.MeliUrlShorter.bussines.url.exception.URLNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,8 +19,8 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalHandlerExceptions {
 
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleNotFoundException(NotFoundException ex, WebRequest request) {
+    @ExceptionHandler(URLNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleNotFoundException(URLNotFoundException ex, WebRequest request) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now().toString());
         body.put("status", HttpStatus.NOT_FOUND.value());
@@ -31,8 +31,8 @@ public class GlobalHandlerExceptions {
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<Map<String, Object>> handleBadRequestException(BadRequestException ex, WebRequest request) {
+    @ExceptionHandler(URLBadRequestException.class)
+    public ResponseEntity<Map<String, Object>> handleBadRequestException(URLBadRequestException ex, WebRequest request) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now().toString());
         body.put("status", HttpStatus.BAD_REQUEST.value());
