@@ -32,6 +32,7 @@ public class RequestUrl implements IUrlMapper<com.example.MeliUrlShorter.present
                 port,
                 route,
                 true
+//                protocol+ toBeMapped.domain()+ tld+ port+ route
         );
 
     }

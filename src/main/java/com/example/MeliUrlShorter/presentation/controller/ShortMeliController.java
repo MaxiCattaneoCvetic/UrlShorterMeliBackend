@@ -1,6 +1,7 @@
 package com.example.MeliUrlShorter.presentation.controller;
 
-import com.example.MeliUrlShorter.bussines.url.service.urlServiceInterface.IShortMeli;
+import com.example.MeliUrlShorter.bussines.url.model.Url;
+import com.example.MeliUrlShorter.bussines.url.service.IShortMeli;
 import com.example.MeliUrlShorter.presentation.controller.req.RequestUrl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -9,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -26,6 +29,9 @@ public class ShortMeliController {
 
     @Autowired
     private IShortMeli shortMeliService;
+
+    @Value("${meli.url}")
+    private String urlToShort;
 
 
     //------------------CREAR UNA NUEVA URL CORTA---------------------
@@ -41,7 +47,8 @@ public class ShortMeliController {
     @PostMapping
     public String shortUrl(@RequestBody RequestUrl requestUrl) {
         //Recibo la url de la request
-        return shortMeliService.saveUrl(requestUrl);
+        Url url = shortMeliService.saveUrl(requestUrl);
+        return urlToShort+url.hash();
     }
 
 
@@ -75,11 +82,12 @@ public class ShortMeliController {
     })
     @GetMapping("/{hash}")
     public ResponseEntity<?> getLargeUrlFromShortUrl(@Parameter(description = "url del servidor y hash correspndiente", required = true)@PathVariable String hash) throws Exception {
-        var target = shortMeliService.getUrlResolve(hash);
+        Url finalUrl = shortMeliService.findByHash(hash);
+
         return
                 ResponseEntity
                         .status(HttpStatus.MOVED_PERMANENTLY)
-                        .location(URI.create(target.toString()))
+                        .location(URI.create(finalUrl.toString()))
                         .header(HttpHeaders.CONNECTION, "close")
                         .build();
     }
@@ -129,6 +137,23 @@ public class ShortMeliController {
     @GetMapping("/check")
     public Map<String, String> checkIfShortUrlExists(@Parameter(description = "url a verificar", required = true)@RequestParam String urlToCheck) throws Exception {
         return shortMeliService.checkUrl(urlToCheck);
+    }
+
+
+
+    @Operation(
+            summary = "Verifica la existencia de una URL en la base de datos",
+            description = "Verificamos si existe la url en la base de datos."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content)
+    })
+    @GetMapping("/all")
+    public List<Url> getAllUrls() {
+        return shortMeliService.getAllUrls();
     }
 
 

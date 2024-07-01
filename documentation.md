@@ -11,9 +11,12 @@ Estuve entre 2 tipos de base de datos Nosql
 
 Conclusion
 En este caso a pesar de las dificultades para mi experiencia acerca de Redis, decidi utilizarla por varios ascpectos interesantes que encontre en internet.
-1) Permite almacenar datos en formato Clave - valor, para este proyecto, es una caracteristica clave ya que cada hash creado almacenara una URL larga. Clave- valor -> (Hash-Url).
-2) Otra consideracíon es que necesitaba una base de datos que almacene datos (clave valor) y nada mas, no necesitaba grandes estructuras con lo cual redit era buena alternativa.
-3) Debido al punto 2 Redis posee menos latencia que MongoDb, con lo cual podria servirme para cumplir con las RPM solicitadas en el desafio.
+1) Almacena estructuras de datos simples y esto le da velocidad, no necesitaba una gran base de datos para el desafio.
+2) Implementacion de CACHE. el cache reduce la necesidad de estar siempre consultando todo a la base de datos, con redis puedo almacenar el cache en los metodos y evitar tantas conexiones a la BD
+3) Gracias a la implementacion de este cache puedo cumplir con el requisito de brindar una respuesta rapida y no tan costosa a los usuarios finales como requiere el desafio.
+
+ 
+
 
 Tecnologias de monitorización:
 
