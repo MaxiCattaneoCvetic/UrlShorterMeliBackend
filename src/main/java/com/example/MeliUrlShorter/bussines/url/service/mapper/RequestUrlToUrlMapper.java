@@ -5,7 +5,7 @@ import com.example.MeliUrlShorter.bussines.url.model.Url;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RequestUrl implements IUrlMapper<com.example.MeliUrlShorter.presentation.controller.req.RequestUrl> {
+public class RequestUrlToUrlMapper implements IUrlMapper<com.example.MeliUrlShorter.presentation.controller.req.RequestUrl> {
 
 
     @Override

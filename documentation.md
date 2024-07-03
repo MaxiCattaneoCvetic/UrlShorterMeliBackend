@@ -4,7 +4,7 @@ Tecnologias utilizadas para el proyecto
 Bases de datos:
 
 Para el proyecto consideré dos opciones de base de datos.
-Desde un principio descarte la posibilidad de utilizar bases de datos SQL debido a que las NoSQL son mucho mas rapidas y considero que para este desafio era lo mas simple y efectivo utilizar.
+Desde un principio descarte la posibilidad de utilizar bases de datos SQL debido a que las NoSQL son mucho más rapidas y considero que para este desafio era lo mas simple y efectivo utilizar.
 Estuve entre 2 tipos de base de datos Nosql
 1) MongoDB: Facil de configurar, ya realice proyectos  con esa tecnologia, es rapida y flexible, almacenamiento gratis (con limite).
 2) Redis: Su configuracion no fue facil, tuve que investigar sobre la tecnologia

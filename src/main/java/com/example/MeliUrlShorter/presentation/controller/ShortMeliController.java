@@ -139,24 +139,6 @@ public class ShortMeliController {
         return shortMeliService.checkUrl(urlToCheck);
     }
 
-
-
-    @Operation(
-            summary = "Verifica la existencia de una URL en la base de datos",
-            description = "Verificamos si existe la url en la base de datos."
-    )
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json")),
-            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content)
-    })
-    @GetMapping("/all")
-    public List<Url> getAllUrls() {
-        return shortMeliService.getAllUrls();
-    }
-
-
 }
 
 

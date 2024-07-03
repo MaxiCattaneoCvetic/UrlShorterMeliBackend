@@ -58,17 +58,6 @@ public class RedisConfiguration {
         return redisTemplate;
     }
 
-//    @Bean
-//    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
-//        RedisCacheConfiguration cacheConfig = RedisCacheConfiguration.defaultCacheConfig()
-//                .entryTtl(Duration.ofMinutes(10))  // TTL 10 minutes
-//                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
-//                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new Jackson2JsonRedisSerializer<>(Url.class)));
-//
-//        return RedisCacheManager.builder(redisConnectionFactory)
-//                .cacheDefaults(cacheConfig)
-//                .build();
-//    }
 
 
 }

@@ -181,11 +181,6 @@ public class ShortMeliService implements IShortMeli {
 
     }
 
-    @Override
-    public List<Url> getAllUrls() {
-        return meliUrlPersistance.findAll();
-    }
-
 
     @Override
 //    @CacheEvict(value = "URL-CACHE-DISABLE", key = "#urlToDisable")

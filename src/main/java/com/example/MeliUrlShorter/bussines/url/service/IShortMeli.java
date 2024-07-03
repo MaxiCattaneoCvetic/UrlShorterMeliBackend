@@ -25,6 +25,5 @@ public interface IShortMeli {
 
     void enableShortUrl(String urlToEnable);
 
-    List<Url> getAllUrls();
 
 }
