@@ -42,10 +42,6 @@ public class UrlShortCustomMetrics {
                 .description("Total de peticiones de obtención (GET) realizadas")
                 .register(meterRegistry);
 
-        logCacheCounter = Counter.builder("cache.log.entries.found")
-                .description("Cantidad de veces que se encontraron entradas en el cache")
-                .register(meterRegistry);
-
         meterRegistry.gauge("custom.uptime", Duration.ofMillis(System.currentTimeMillis()), Duration::toSeconds);
     }
 
