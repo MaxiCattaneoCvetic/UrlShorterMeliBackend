@@ -33,13 +33,13 @@ En ambas opciones debemos seguir las instrucciones del script.
 
 **Linux**
 ```bash  
-  http://shortmeli.s3-website.us-east-2.amazonaws.com/
+  http- EN DESARROLLO 
 ```
 
 
 **PowerShell**
 ```bash  
-  http://shortmeli.s3-website.us-east-2.amazonaws.com/
+  http- EN DESARROLLO 
 ```
 
 ## Documentación de la API
