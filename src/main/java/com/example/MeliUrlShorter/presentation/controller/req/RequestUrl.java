@@ -10,7 +10,7 @@ public record RequestUrl(
         String domain,
         @Schema(description = "Ingresa el tld", example = ".com", required = true)
         String tld,
-        @Schema(description = "Ingresa el puerto si es necesario", example = "8080", required = true)
+        @Schema(description = "Ingresa el puerto si es necesario", example = "80")
         String port,
         @Schema(description = "Ingresa la ruta", example = "/mis/envios", required = true)
         String route
