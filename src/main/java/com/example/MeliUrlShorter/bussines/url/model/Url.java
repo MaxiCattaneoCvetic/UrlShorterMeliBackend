@@ -31,6 +31,16 @@ public class Url implements Serializable {
         this.isActive = isActive;
     }
 
+    public Url(String hash, String protocol, String domain, String tld, String port, String route, Boolean isActive) {
+        this.hash = hash;
+        this.protocol = protocol;
+        this.domain = domain;
+        this.tld = tld;
+        this.port = port;
+        this.route = route;
+        this.isActive = isActive;
+    }
+
     public Url(String hash, String protocol, String domain, String tld, String port, String route) {
         this.hash = hash;
         this.protocol = protocol;
@@ -47,6 +57,7 @@ public class Url implements Serializable {
         this.port = port;
         this.route = route;
     }
+
 
     public String hash() {
         return hash;
