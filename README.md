@@ -26,21 +26,15 @@ Hay dos formas de hacer utilizar la aplicación, la primera es utilizando el dep
   http://shortmeli.s3-website.us-east-2.amazonaws.com/
 ```
 La segunda forma es hacer el deploy local, para esto vamos a necesitar los siguientes servicios.
-En ambas opciones debemos seguir las instrucciones del script.
 
 - Docker 🐳
 - La aplicación por defecto corre en el puerto 8080, por lo tanto es sumamente importante que este este disponible
 
-**Linux**
-```bash  
-  http- EN DESARROLLO 
-```
 
-
-**PowerShell**
 ```bash  
-  http- EN DESARROLLO 
+  git clone https://github.com/MaxiCattaneoCvetic/UrlShorterMeliBackend.git
 ```
+Ahora debemos entrar a el docker-compose y correr la base de datos que corre en el puerto 6379, luego correr la aplicación normalmente, para realizar pruebas podes visitar la documentación "Para entornos locales"
 
 ## Documentación de la API
 
