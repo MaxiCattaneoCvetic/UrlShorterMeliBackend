@@ -30,7 +30,7 @@ La segunda forma es hacer el deploy local, para esto vamos a necesitar los sigui
 - Docker 🐳
 - La aplicación por defecto corre en el puerto 8080, por lo tanto es sumamente importante que este este disponible
 
-
+Nos debemos mover IMPORTANTE a la rama local y clonar el proyecto
 ```bash  
   git clone https://github.com/MaxiCattaneoCvetic/UrlShorterMeliBackend.git
 ```
