@@ -52,8 +52,7 @@ http://34.196.176.225:8080/swagger-ui.html
 
 Para ingresar a las metricas de la aplicación y ver como reacciona a determinados eventos podemos ingresar mediante el menu de navegación en el deploy online. 
 
-De lo contrario, una vez corrido el script para el deploy local podemos ingresar al siguiente link
-
+Si estas utilizando el deploy local entra aqui
 ```bash  
 http://localhost:8080/instances/830c018baa23/details
 ```
