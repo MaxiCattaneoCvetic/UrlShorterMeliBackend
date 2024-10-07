@@ -1,0 +1,16 @@
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\MeliUrlShorterApplication.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\persistance\IMeliPersistance.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\presentation\controller\advisor\GlobalHandlerExceptions.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\presentation\controller\ShortMeliController.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\bussines\metrics\UrlShortCustomMetrics.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\bussines\url\service\IShortMeli.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\presentation\controller\req\RequestUrl.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\config\RedisConfiguration.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\bussines\url\model\Url.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\bussines\url\service\ShortMeliService.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\config\CorsConfiguration.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\bussines\url\service\mapper\RequestUrlToUrlMapper.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\bussines\url\exception\URLNotFoundException.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\config\SwaggerConfig.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\bussines\url\exception\URLBadRequestException.java
+C:\Users\cveti\Desktop\Max\Meli\UrlShorterMeliBackend\src\main\java\com\example\MeliUrlShorter\bussines\url\service\mapper\IUrlMapper.java
