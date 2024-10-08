@@ -48,6 +48,7 @@ public class ShortMeliController {
     public String shortUrl(@RequestBody RequestUrl requestUrl) {
         //Recibo la url de la request
         Url url = shortMeliService.saveUrl(requestUrl);
+        System.out.println(urlToShort);
         return urlToShort+url.hash();
     }
 
