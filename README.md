@@ -14,7 +14,8 @@ La estructura del backend esta hecha con Java springboot y para el almacenamient
 
 Para hacer el deploy se utilizo AWS. un bucket s3 para el almacenamiento del front y una t2.micro para el almacenamiento del backend. (Ec2).
 
-
+## Frontend.
+![image](https://github.com/MaxiCattaneoCvetic/UrlShorterMeliBackend/blob/main/urlshorter_1.jpg)
 
 
 
